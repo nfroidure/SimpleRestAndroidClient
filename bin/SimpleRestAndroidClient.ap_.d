@@ -1,0 +1,11 @@
+/home/nfroidure/Bureau/android-sdk-linux/tools/Elitwork/SimpleRestAndroidClient/bin/SimpleRestAndroidClient.ap_ \
+ : /home/nfroidure/Bureau/android-sdk-linux/tools/Elitwork/SimpleRestAndroidClient/res/layout/main.xml \
+/home/nfroidure/Bureau/android-sdk-linux/tools/Elitwork/SimpleRestAndroidClient/res/layout/newrequest.xml \
+/home/nfroidure/Bureau/android-sdk-linux/tools/Elitwork/SimpleRestAndroidClient/res/drawable-ldpi/ic_launcher.png \
+/home/nfroidure/Bureau/android-sdk-linux/tools/Elitwork/SimpleRestAndroidClient/res/drawable-mdpi/ic_launcher.png \
+/home/nfroidure/Bureau/android-sdk-linux/tools/Elitwork/SimpleRestAndroidClient/res/values/strings.xml \
+/home/nfroidure/Bureau/android-sdk-linux/tools/Elitwork/SimpleRestAndroidClient/res/drawable-hdpi/ic_launcher.png \
+/home/nfroidure/Bureau/android-sdk-linux/tools/Elitwork/SimpleRestAndroidClient/bin/res/drawable-ldpi/ic_launcher.png \
+/home/nfroidure/Bureau/android-sdk-linux/tools/Elitwork/SimpleRestAndroidClient/bin/res/drawable-mdpi/ic_launcher.png \
+/home/nfroidure/Bureau/android-sdk-linux/tools/Elitwork/SimpleRestAndroidClient/bin/res/drawable-hdpi/ic_launcher.png \
+/home/nfroidure/Bureau/android-sdk-linux/tools/Elitwork/SimpleRestAndroidClient/AndroidManifest.xml \
