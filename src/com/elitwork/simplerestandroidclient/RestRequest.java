@@ -91,7 +91,7 @@ public class RestRequest
 			}
 		}
 
-	public boolean execute(String username, String password)
+	public int execute(String username, String password) throws IOException
 		{
 		try
 			{
@@ -111,36 +111,25 @@ public class RestRequest
 			registry.register(new Scheme("https", sf, 443));
 
 			DefaultHttpClient client = new DefaultHttpClient(new ThreadSafeClientConnManager(params, registry), params);
-			
+
 			if(username!=""&&password!="")
 				{
 				CredentialsProvider cp = new BasicCredentialsProvider();
 				cp.setCredentials(new AuthScope(AuthScope.ANY_HOST, -1), new UsernamePasswordCredentials(username, password));
 				client.setCredentialsProvider(cp);
 				}
-			try
-				{
-				this.response = client.execute(this.request);
-				}
-			catch (IOException e)
-				{
-				e.printStackTrace();
-				return false;
-				}
+			
+			this.response = client.execute(this.request);
+
+			return this.response
+				.getStatusLine()
+				.getStatusCode();
 			}
-		catch (Exception e)
+		catch(Exception e)
 			{
 			e.printStackTrace();
-			return false;
+			return -1;
 			}
-		return true;
-		}
-
-	public int getResponseCode()
-		{
-		return this.response
-			.getStatusLine()
-			.getStatusCode();
 		}
 
 	public String getResponseHeader(String name)
@@ -148,43 +137,28 @@ public class RestRequest
 		return this.response.getLastHeader(name).getValue();
 		}
 
-	public String getResponseContent()
+	public String getResponseContent() throws IOException
 		{
 		InputStream is = getStreamedResponseContent();
 		BufferedReader br = new BufferedReader(new InputStreamReader(is));
 		StringBuilder sb = new StringBuilder();
-		try
+		String str;
+		do
 			{
-			String str;
-			do
-				{
-				str = br.readLine();
-				if(str!=null)
-					sb.append(str + (sb.length()!=0?"\n":""));
-				}
-			while(str!=null);
-			br.close();
-			return sb.toString();
+			str = br.readLine();
+			if(str!=null)
+				sb.append(str + (sb.length()!=0?"\n":""));
 			}
-		catch (IOException e)
-			{
-			e.printStackTrace();
-			}
-		return "";
+		while(str!=null);
+		br.close();
+		return sb.toString();
 		}
 
-	public InputStream getStreamedResponseContent()
+	public InputStream getStreamedResponseContent() throws IOException
 		{
-		try
+		if (this.response.getEntity() != null)
 			{
-			if (this.response.getEntity() != null)
-				{
-				return this.response.getEntity().getContent();
-				}
-			}
-		catch (IOException e)
-			{
-			e.printStackTrace();
+			return this.response.getEntity().getContent();
 			}
 		return null;
 		}

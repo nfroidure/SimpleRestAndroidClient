@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.Toast;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+import java.io.IOException;
 
 public class NewRequest extends Activity
 {
@@ -22,21 +23,17 @@ public class NewRequest extends Activity
     //String str1 = ((SharedPreferences)localObject).getString("username", "");
     //String str2 = ((SharedPreferences)localObject).getString("password", "");
     RestRequest req= new RestRequest("http://www.elitwork.com.ewk/robots.txt", RestRequest.HTTP_GET);
-    if(req.execute("",""))
+	try
 		{
-		int i = req.getResponseCode();
+		int i=req.execute("","");
 		if ((i >= 200) || (i < 300))
-		Toast.makeText(this, req.getResponseContent(), 0).show();
+			Toast.makeText(this, req.getResponseContent(), 0).show();
 		}
-	else
-		{
-		Toast.makeText(this, "Unable to execute the request", 0).show();
-		}
-    finish();
+	catch(IOException e)
+			{
+			Toast.makeText(this, "Unable to execute the request", 0).show();
+			e.printStackTrace();
+			}
+	finish();
   }
 }
-
-/* Location:           /home/nfroidure/Bureau/apk/dex2jar-0.0.9.7/classes-dex2jar.jar
- * Qualified Name:     fr.ecogom.vigisystem.Connect
- * JD-Core Version:    0.6.0
- */
